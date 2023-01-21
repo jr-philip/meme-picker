@@ -169,6 +169,8 @@ const catsData = [
     },
 ]
 
+const emotionRadios = document.getElementById("emotion-radios")
+
 function getEmotionsArray(cats) {
     const catEmotions = []
     for (let cat of cats){
@@ -179,8 +181,13 @@ function getEmotionsArray(cats) {
     return catEmotions
 }
 
-function renderEmotionsRadio(cats){
+function renderEmotionsRadios(cats){
+    let radioItems = ``
     const emotions = getEmotionsArray(cats)
-    console.log(emotions)
+    for (let emotion of emotions){
+        radioItems += `<p>${emotion}</p>`
+    }
+    emotionRadios.innerHTML = radioItems
 }
-renderEmotionsRadio(catsData)
+
+renderEmotionsRadios(catsData)
