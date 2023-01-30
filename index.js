@@ -18,13 +18,14 @@ function hightLightCheckOption(e){
   
 
 function getMatchingCatsArray(){
-    const isGif = gifsOnlyOption.checked
-    console.log(isGif)
-    if (document.querySelector("input [type='radio']:checked")){
-        const selectedEmotion = document.querySelector("input [type='radio']:checked").value
-        console.log(selectedEmotion)
+    if (document.querySelector("input[type='radio']:checked")){
+        const selectedEmotion = document.querySelector("input[type='radio']:checked").value
+        const isGif = gifsOnlyOption.checked
+        const catsFilter = catsData.filter(function(cat){
+            return cat.emotionTags.includes(selectedEmotion)
+        })
+        console.log(catsFilter)
     }
-   
 }
 
 function getEmotionsArray(cats) {
