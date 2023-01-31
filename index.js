@@ -39,6 +39,9 @@ function getSingleCatObject(){//then the renderCat() will call out these functio
     console.log(catsArray)
     if(catsArray.length === 1){
         console.log(catsArray[0])
+    }else {
+        const randomNumbers = Math.floor(Math.random*(catsArray.length))
+        return catsArray[randomNumbers]
     }
 }
 
