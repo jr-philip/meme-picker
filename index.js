@@ -21,17 +21,18 @@ function getMatchingCatsArray(){
     if (document.querySelector("input[type='radio']:checked")){
         const selectedEmotion = document.querySelector("input[type='radio']:checked").value
         const isGif = gifsOnlyOption.checked
-        const catsFilter = catsData.filter(function(cat){
-            if(isGif){
-                return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+
+        const matchingCatsArray = catsData.filter(function(cat){//.filter method
+            if(isGif){//or(isGif === true)
+                return cat.emotionTags.includes(selectedEmotion) && cat.isGif //cat.isGif === true
             }else{
                 return cat.emotionTags.includes(selectedEmotion)
-            }
-           
+            } 
         })
-        return catsFilter
+        return matchingCatsArray
     }
 }
+
 
 function getEmotionsArray(cats) {
     const catEmotions = []
