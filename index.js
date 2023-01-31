@@ -4,7 +4,7 @@ const getImageBtn = document.getElementById("get-image-btn")
 const gifsOnlyOption = document.getElementById("gifs-only-option")
 
 emotionRadios.addEventListener("change",hightLightCheckOption)// use of e.target.id 
-getImageBtn.addEventListener("click", getMatchingCatsArray)
+getImageBtn.addEventListener("click", renderCat)
 
 
 function hightLightCheckOption(e){
@@ -31,6 +31,16 @@ function getMatchingCatsArray(){
         })
         return matchingCatsArray
     }
+}
+
+
+function getSingleCatObject(){
+    console.log(getMatchingCatsArray())
+}
+
+
+function renderCat(){
+    getSingleCatObject()
 }
 
 
