@@ -38,9 +38,9 @@ function getSingleCatObject(){//then the renderCat() will call out these functio
     const catsArray = getMatchingCatsArray()
     console.log(catsArray)
     if(catsArray.length === 1){
-        console.log(catsArray[0])
+        return catsArray[0]
     }else {
-        const randomNumbers = Math.floor(Math.random*(catsArray.length))
+        const randomNumbers = Math.floor(Math.random()*catsArray.length)
         return catsArray[randomNumbers]
     }
 }
