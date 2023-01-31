@@ -17,7 +17,7 @@ function hightLightCheckOption(e){
 }
   
 
-function getMatchingCatsArray(){
+function getMatchingCatsArray(){//lastly getSingleCatObject will call out this function becoz it will provide arrays which will be narrowed down 
     if (document.querySelector("input[type='radio']:checked")){
         const selectedEmotion = document.querySelector("input[type='radio']:checked").value
         const isGif = gifsOnlyOption.checked
@@ -31,16 +31,19 @@ function getMatchingCatsArray(){
         })
         return matchingCatsArray
     }
-}
+} 
 
 
-function getSingleCatObject(){
+function getSingleCatObject(){//then the renderCat() will call out these function so to know which cat to render
     const catsArray = getMatchingCatsArray()
     console.log(catsArray)
+    if(catsArray.length === 1){
+        console.log(catsArray[0])
+    }
 }
 
 
-function renderCat(){
+function renderCat(){// the eventListener will call these as the first function 
     getSingleCatObject()
 }
 
