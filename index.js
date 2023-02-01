@@ -8,23 +8,43 @@ const memeModal = document.getElementById("meme-modal")
 const memeModalCloseBtn = document.getElementById("meme-modal-close-btn")
 
 emotionRadios.addEventListener("change",hightLightCheckOption)// use of e.target.id 
-getImageBtn.addEventListener("click", renderCat)
 memeModalCloseBtn.addEventListener("click", closeModal)
+getImageBtn.addEventListener("click", renderCat)
+
+function hightLightCheckOption(e) {
+    const radios = document.getElementsByClassName("radio")
+    for (let radio of radios) {
+        radio.classList.remove("highlight")
+    }
+    document.getElementById(e.target.id).parentElement.classList.add("highlight")
+}
 
 function closeModal(){
     memeModal.style.display ="none"
 }
 
-
-function hightLightCheckOption(e){
-
-    const radios = document.getElementsByClassName("radio")
-    for (let radio of radios){
-        radio.classList.remove("highlight")
-    }
-    document.getElementById(e.target.id).parentElement.classList.add("highlight")
+function renderCat() {// the eventListener will call these as the first function 
+    const catObject = getSingleCatObject()
+    memeModalInner.innerHTML = `
+        <img
+        class="cat-img"
+        src="./images/${catObject.image}"
+        alt="${catObject.alt}"
+        >
+    `
+    memeModal.style.display = "flex"
 }
-  
+
+function getSingleCatObject() {//then the renderCat() will call out these function so to know which cat to render
+    const catsArray = getMatchingCatsArray()
+    console.log(catsArray)
+    if (catsArray.length === 1) {
+        return catsArray[0]
+    } else {
+        const randomNumbers = Math.floor(Math.random() * catsArray.length)
+        return catsArray[randomNumbers]
+    }
+}
 
 function getMatchingCatsArray(){//lastly getSingleCatObject will call out this function becoz it will provide arrays which will be narrowed down 
     if (document.querySelector("input[type='radio']:checked")){
@@ -42,33 +62,7 @@ function getMatchingCatsArray(){//lastly getSingleCatObject will call out this f
     }
 } 
 
-
-function getSingleCatObject(){//then the renderCat() will call out these function so to know which cat to render
-    const catsArray = getMatchingCatsArray()
-    console.log(catsArray)
-    if(catsArray.length === 1){
-        return catsArray[0]
-    }else {
-        const randomNumbers = Math.floor(Math.random()*catsArray.length)
-        return catsArray[randomNumbers]
-    }
-}
-
-
-function renderCat(){// the eventListener will call these as the first function 
-    const catObject = getSingleCatObject()
-    memeModalInner.innerHTML = `
-        <img
-        class="cat-img"
-        src="./images/${catObject.image}"
-        alt="${catObject.alt}"
-        >
-    `
-memeModal.style.display ="flex"
-}
-
-
-function getEmotionsArray(cats) {
+function getEmotionsArray(cats) { //these function creates the array
     const catEmotions = []
     for (let cat of cats){
         for(let emotion of cat.emotionTags){
@@ -80,7 +74,7 @@ function getEmotionsArray(cats) {
     return catEmotions
 }  
 
-function renderEmotionsRadios(cats){
+function renderEmotionsRadios(cats){// these function renders the array created
     let radioItems = ` `
     const emotions = getEmotionsArray(cats)
     for (let emotion of emotions){
@@ -98,5 +92,4 @@ function renderEmotionsRadios(cats){
     }
     emotionRadios.innerHTML = radioItems
 }
-
 renderEmotionsRadios(catsData)
