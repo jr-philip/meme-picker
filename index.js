@@ -28,7 +28,7 @@ function renderCat() {// the eventListener will call these as the first function
     memeModalInner.innerHTML = `
         <img
         class="cat-img"
-        src="./images/${catObject.image}"
+        src="./image/${catObject.image}"
         alt="${catObject.alt}"
         >
     `
